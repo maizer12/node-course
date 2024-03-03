@@ -3,7 +3,7 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
 import { registerValidation } from '../validations/auth.js';
-import { validationResult } from 'express-validator';
+import { body, validationResult } from 'express-validator';
 import UserModel from '../models/User.js';
 import bcrypt from 'bcrypt';
 
@@ -20,6 +20,33 @@ app.get('/', (req, res) => {
   res.json({ user: 'petro' });
 });
 
+app.post('/auth/login', async (req, res) => {
+  try {
+    const user = await UserModel.findOne({
+      email: req.body.email,
+    });
+
+    if (!user) return res.status(400).json({ message: 'Incorrect email or password!' });
+
+    const isPassword = await bcrypt.compare(req.body.password.toString(), user.passwordHash);
+
+    if (!isPassword) return res.status(400).json({ message: 'Incorrect email or password!' });
+
+    const token = jwt.sign({ _id: user._id }, 'secret123', { expiresIn: '30d' });
+
+    const { passwordHash, ...data } = user._doc;
+
+    res.json({
+      data,
+      token,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({
+      message: 'Failed to login',
+    });
+  }
+});
 app.post('/auth/register', registerValidation, async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -29,22 +56,24 @@ app.post('/auth/register', registerValidation, async (req, res) => {
 
     const password = req.body.password;
     const salt = await bcrypt.genSalt(10);
-    const passwordHash = await bcrypt.hash(password.toString(), salt);
+    const hash = await bcrypt.hash(password.toString(), salt);
 
-    const token = jwt.sign(
-      {
-        email: req.body.email,
-        fullName: req.body.fullName,
-      },
-      'secret123',
-    );
-
-    const doc = new UserModel({ ...req.body, passwordHash });
+    const doc = new UserModel({ ...req.body, passwordHash: hash });
 
     const user = await doc.save();
-    res.json(user);
+
+    const token = jwt.sign({ _id: user._id }, 'secret123', { expiresIn: '30d' });
+
+    const { passwordHash, ...data } = user._doc;
+
+    res.json({
+      data,
+      token,
+    });
   } catch (err) {
-    res.status(400).send(err);
+    res.status(500).json({
+      message: 'Failed to register',
+    });
   }
 });
 
