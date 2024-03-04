@@ -16,14 +16,18 @@ const app = express();
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.json({ user: 'petro' });
+  res.json({ message: 'Api is work!' });
 });
 
 app.get('/auth/me', checkAuth, UserController.getMe);
 app.post('/auth/login', UserController.authorization);
 app.post('/auth/register', registerValidation, UserController.registration);
 
+app.get('/posts', PostsController.getAll);
+app.get('/posts/:id', PostsController.getOne);
 app.post('/posts', checkAuth, PostsController.createPost);
+app.delete('/posts/:id', checkAuth, PostsController.deletePost);
+app.patch('/posts/:id', checkAuth, PostsController.updatePost);
 
 app.listen(process.env.PORT, (rej) => {
   if (rej) return console.log(rej);
