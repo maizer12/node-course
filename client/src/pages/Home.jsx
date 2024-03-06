@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from 'react-redux';
 export const Home = () => {
   const dispatch = useDispatch();
   const { posts, tags } = useSelector((state) => state.postsSlice);
+  const { data } = useSelector((state) => state.authSlice);
+  const userId = data?.data?._id;
 
   useEffect(() => {
     dispatch(fetchAllPosts());
@@ -39,7 +41,7 @@ export const Home = () => {
                   viewsCount={e.viewsCount}
                   commentsCount={3}
                   tags={e.tags}
-                  isEditable
+                  isEditable={userId && userId === e.user._id}
                 />
               ))}
         </Grid>
