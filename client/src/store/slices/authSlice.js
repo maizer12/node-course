@@ -70,7 +70,7 @@ const authSlice = createSlice({
   },
 });
 
-export const selectIsAuth = (state) => !!state.authSlice.data;
+export const selectIsAuth = () => !!localStorage.getItem('token');
 
 export const { logout } = authSlice.actions;
 

@@ -42,7 +42,7 @@ export const updatePost = async (req, res) => {
 };
 export const getAll = async (req, res) => {
   try {
-    const posts = await PostModel.find().populate('user').exec();
+    const posts = await PostModel.find().sort({createdAt:-1}).populate('user').exec();
     res.json(posts);
   } catch (err) {
     console.log(err);
@@ -62,7 +62,7 @@ export const getLastTags = async (req, res) => {
           .slice(0, 5),
       ),
     ];
-    
+
     res.json(tags);
   } catch (err) {
     console.log(err);

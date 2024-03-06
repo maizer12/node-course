@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import { registerValidation } from './validations/auth.js';
 import { checkAuth } from './utils/checkAuth.js';
 import * as UserController from './controllers/UserController.js';
-import * as PostsController from './controllers/PostController.js';
+import PostRoutes from './routes/PostRoutes.js';
 import multer from 'multer';
 import cors from 'cors';
 
@@ -46,12 +46,7 @@ app.get('/auth/me', checkAuth, UserController.getMe);
 app.post('/auth/login', UserController.authorization);
 app.post('/auth/register', registerValidation, UserController.registration);
 
-app.get('/posts', PostsController.getAll);
-app.get('/tags', PostsController.getLastTags);
-app.get('/posts/:id', PostsController.getOne);
-app.post('/posts', checkAuth, PostsController.createPost);
-app.delete('/posts/:id', checkAuth, PostsController.deletePost);
-app.patch('/posts/:id', checkAuth, PostsController.updatePost);
+app.use(PostRoutes);
 
 app.listen(process.env.PORT, (rej) => {
   if (rej) return console.log(rej);
