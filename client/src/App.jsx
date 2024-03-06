@@ -3,8 +3,20 @@ import { Routes, Route } from 'react-router-dom';
 
 import { Header } from './components';
 import { Home, FullPost, Registration, AddPost, Login } from './pages';
+import { useEffect } from 'react';
+import axios from './axios.js';
+import { useDispatch } from 'react-redux';
+import { authMe } from './store/slices/authSlice';
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    axios
+      .get('/auth/me')
+      .then((data) => dispatch(authMe()))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <>
       <Header />
