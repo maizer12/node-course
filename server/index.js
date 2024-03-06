@@ -1,10 +1,9 @@
 import 'dotenv/config';
 import express from 'express';
 import mongoose from 'mongoose';
-import { registerValidation } from './validations/auth.js';
 import { checkAuth } from './utils/checkAuth.js';
-import * as UserController from './controllers/UserController.js';
 import PostRoutes from './routes/PostRoutes.js';
+import AuthRoutes from './routes/AuthRoutes.js';
 import multer from 'multer';
 import cors from 'cors';
 
@@ -42,10 +41,7 @@ app.post('/upload', checkAuth, upload.single('image'), (req, res) => {
   });
 });
 
-app.get('/auth/me', checkAuth, UserController.getMe);
-app.post('/auth/login', UserController.authorization);
-app.post('/auth/register', registerValidation, UserController.registration);
-
+app.use(AuthRoutes);
 app.use(PostRoutes);
 
 app.listen(process.env.PORT, (rej) => {

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import CssBaseline from '@mui/material/CssBaseline';
+import './assets/style/main.scss';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 

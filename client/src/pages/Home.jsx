@@ -2,29 +2,42 @@ import React, { useEffect } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
-import { fetchAllPosts, fetchAllTags } from '../store/slices/postsSlice';
+import { fetchAllPosts, fetchAllTags, setSort } from '../store/slices/postsSlice';
 
 import { Post } from '../components/Post';
 import { TagsBlock } from '../components/TagsBlock';
 import { CommentsBlock } from '../components/CommentsBlock';
 import { useDispatch, useSelector } from 'react-redux';
 
+const tabsItems = [
+  { name: 'Нові', value: 'new' },
+  { name: 'Популярні', value: 'popular' },
+];
+
 export const Home = () => {
   const dispatch = useDispatch();
-  const { posts, tags } = useSelector((state) => state.postsSlice);
+  const { posts, tags, sort } = useSelector((state) => state.postsSlice);
   const { data } = useSelector((state) => state.authSlice);
   const userId = data?.data?._id;
 
   useEffect(() => {
-    dispatch(fetchAllPosts());
     dispatch(fetchAllTags());
   }, []);
 
+  useEffect(() => {
+    dispatch(fetchAllPosts(sort));
+  }, [sort]);
+
+  const clickTab = (value) => {
+    dispatch(setSort(value));
+  };
+
   return (
     <>
-      <Tabs style={{ marginBottom: 15 }} value={0} aria-label="basic tabs example">
-        <Tab label="Новые" />
-        <Tab label="Популярные" />
+      <Tabs style={{ marginBottom: 15 }} value={sort} aria-label="basic tabs example">
+        {tabsItems.map((e) => (
+          <Tab label={e.name} key={e.value} value={e.value} onClick={() => clickTab(e.value)} />
+        ))}
       </Tabs>
       <Grid container spacing={4}>
         <Grid xs={8} item>
@@ -35,7 +48,7 @@ export const Home = () => {
                   id={e._id}
                   key={i}
                   title={e.title}
-                  imageUrl="https://res.cloudinary.com/practicaldev/image/fetch/s--UnAfrEG8--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/icohm5g0axh9wjmu4oc3.png"
+                  imageUrl={e.imageUrl || ''}
                   user={e.user}
                   createdAt={'12 июня 2022 г.'}
                   viewsCount={e.viewsCount}

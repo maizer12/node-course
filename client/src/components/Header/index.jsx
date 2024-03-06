@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
 
 import styles from './Header.module.scss';
 import Container from '@mui/material/Container';
@@ -25,12 +26,12 @@ export const Header = () => {
           <div className={styles.buttons}>
             {isAuth ? (
               <>
-                <Link to="/add-post">
-                  <Button variant="contained">Написать статью</Button>
+                <Link to="/add-post" className={styles['add-post']}>
+                  <AddIcon />
                 </Link>
-                <Button onClick={onClickLogout} variant="contained" color="error">
+                <button className={styles.btn} onClick={onClickLogout} variant="contained" color="error">
                   Вийти
-                </Button>
+                </button>
               </>
             ) : (
               <>

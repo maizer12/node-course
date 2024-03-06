@@ -37,32 +37,34 @@ export const Login = () => {
   }
 
   return (
-    <Paper classes={{ root: styles.root }}>
-      <Typography classes={{ root: styles.title }} variant="h5">
-        Вход в аккаунт
-      </Typography>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <TextField
-          {...register('email', { required: true, pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/ })}
-          className={styles.field}
-          label="E-Mail"
-          fullWidth
-          error={errors.email}
-          helperText={errors.email ? 'Неверно указана почта' : ''}
-        />
-        <TextField
-          {...register('password', { required: true })}
-          className={styles.field}
-          label="Пароль"
-          type="password"
-          fullWidth
-          error={errors.password}
-          helperText={errors.password ? 'Введите пароль' : ''}
-        />
-        <Button type="submit" size="large" variant="contained" fullWidth>
-          Войти
-        </Button>
-      </form>
-    </Paper>
+    <main>
+      <Paper classes={{ root: styles.root }}>
+        <Typography classes={{ root: styles.title }} variant="h5">
+          Вхід в систему
+        </Typography>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <TextField
+            {...register('email', { required: true, pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/ })}
+            className={styles.field}
+            label="E-Mail"
+            fullWidth
+            error={errors.email}
+            helperText={errors.email ? 'Неверно указана почта' : ''}
+          />
+          <TextField
+            {...register('password', { required: true })}
+            className={styles.field}
+            label="Пароль"
+            type="password"
+            fullWidth
+            error={errors.password}
+            helperText={errors.password ? 'Введите пароль' : ''}
+          />
+          <Button type="submit" size="large" variant="contained" fullWidth>
+            Войти
+          </Button>
+        </form>
+      </Paper>
+    </main>
   );
 };

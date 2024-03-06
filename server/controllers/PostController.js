@@ -41,11 +41,12 @@ export const updatePost = async (req, res) => {
   }
 };
 export const getAll = async (req, res) => {
+  const { type } = req.params;
+  const sort = type === 'popular' ? { viewsCount: -1 } : { createdAt: -1 };
   try {
-    const posts = await PostModel.find().sort({createdAt:-1}).populate('user').exec();
+    const posts = await PostModel.find().sort(sort).populate('user').exec();
     res.json(posts);
   } catch (err) {
-    console.log(err);
     res.status(404).json({
       message: 'Failed to get posts',
     });
