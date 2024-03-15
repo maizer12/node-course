@@ -37,8 +37,9 @@ export const Login = () => {
   }
 
   return (
-    <main>
-      <Paper classes={{ root: styles.root }}>
+    <main className={styles.main + ' flex'}>
+      <h1 className="flex">test</h1>
+      {/* <Paper classes={{ root: styles.root }}>
         <Typography classes={{ root: styles.title }} variant="h5">
           Вхід в систему
         </Typography>
@@ -64,7 +65,7 @@ export const Login = () => {
             Войти
           </Button>
         </form>
-      </Paper>
+      </Paper> */}
     </main>
   );
 };

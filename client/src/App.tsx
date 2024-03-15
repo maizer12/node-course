@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Header } from './components';
 import { Home, FullPost, Registration, AddPost, Login } from './pages';
 import { useEffect } from 'react';
-import axios from './axios.js';
+import axios from './axios';
 import { useDispatch } from 'react-redux';
 import { authMe } from './store/slices/authSlice';
 
