@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from '../axios';
 import { useParams } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ import { CommentsBlock } from '../components/CommentsBlock';
 
 export const FullPost = () => {
   const params = useParams();
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

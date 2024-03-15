@@ -7,12 +7,12 @@ const initialState = {
   error: '',
 };
 
-export const authLogin = createAsyncThunk('posts/authLogin', async (requestData) => {
+export const authLogin = createAsyncThunk('posts/authLogin', async (requestData: any) => {
   const response = await axios.post('/auth/login', { ...requestData });
   return response.data;
 });
 
-export const authRegistration = createAsyncThunk('posts/authRegistration', async (requestData) => {
+export const authRegistration = createAsyncThunk('posts/authRegistration', async (requestData: any) => {
   const response = await axios.post('/auth/register', { ...requestData });
   return response.data;
 });
@@ -32,39 +32,39 @@ const authSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    builder.addCase(authLogin.pending, (state) => {
+    builder.addCase(authLogin.pending, (state: any) => {
       state.data = [];
       state.loading = true;
     });
-    builder.addCase(authLogin.fulfilled, (state, action) => {
+    builder.addCase(authLogin.fulfilled, (state: any, action) => {
       state.data = action.payload;
       state.loading = false;
       localStorage.setItem('token', action.payload.token);
     });
-    builder.addCase(authLogin.rejected, (state) => {
+    builder.addCase(authLogin.rejected, (state: any) => {
       state.loading = false;
     });
-    builder.addCase(authRegistration.pending, (state) => {
+    builder.addCase(authRegistration.pending, (state: any) => {
       state.data = [];
       state.loading = true;
     });
-    builder.addCase(authRegistration.fulfilled, (state, action) => {
+    builder.addCase(authRegistration.fulfilled, (state: any, action) => {
       state.data = action.payload;
       state.loading = false;
       localStorage.setItem('token', action.payload.token);
     });
-    builder.addCase(authRegistration.rejected, (state) => {
+    builder.addCase(authRegistration.rejected, (state: any) => {
       state.loading = false;
     });
-    builder.addCase(authMe.pending, (state) => {
+    builder.addCase(authMe.pending, (state: any) => {
       state.data = [];
       state.loading = true;
     });
-    builder.addCase(authMe.fulfilled, (state, action) => {
+    builder.addCase(authMe.fulfilled, (state: any, action) => {
       state.data = action.payload;
       state.loading = false;
     });
-    builder.addCase(authMe.rejected, (state) => {
+    builder.addCase(authMe.rejected, (state: any) => {
       state.loading = false;
     });
   },

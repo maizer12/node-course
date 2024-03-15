@@ -15,9 +15,9 @@ const tabsItems = [
 ];
 
 export const Home = () => {
-  const dispatch = useDispatch();
-  const { posts, tags, sort } = useSelector((state) => state.postsSlice);
-  const { data } = useSelector((state) => state.authSlice);
+  const dispatch: any = useDispatch();
+  const { posts, tags, sort } = useSelector((state: any) => state.postsSlice);
+  const { data } = useSelector((state: any) => state.authSlice);
   const userId = data?.data?._id;
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export const Home = () => {
     dispatch(fetchAllPosts(sort));
   }, [sort]);
 
-  const clickTab = (value) => {
+  const clickTab = (value: string) => {
     dispatch(setSort(value));
   };
 
@@ -43,7 +43,7 @@ export const Home = () => {
         <Grid xs={8} item>
           {posts.loading
             ? [...Array(5)].map((_, i) => <Post isLoading={true} key={i} />)
-            : posts.data.map((e, i) => (
+            : posts.data.map((e: any, i: number) => (
                 <Post
                   id={e._id}
                   key={i}

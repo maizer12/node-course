@@ -15,7 +15,7 @@ const initialState = {
   },
 };
 
-export const fetchAllPosts = createAsyncThunk('posts/fetchAllPosts', async (sort) => {
+export const fetchAllPosts = createAsyncThunk('posts/fetchAllPosts', async (sort: any) => {
   const data = await axios.get('/posts/' + sort);
   return data.data;
 });
@@ -29,31 +29,31 @@ const postSlice = createSlice({
   name: 'post',
   initialState,
   reducers: {
-    setSort: (state, action) => {
+    setSort: (state: any, action) => {
       state.sort = action.payload;
     },
   },
   extraReducers(builder) {
-    builder.addCase(fetchAllPosts.pending, (state) => {
+    builder.addCase(fetchAllPosts.pending, (state: any) => {
       state.posts.data = [];
       state.posts.loading = true;
     });
-    builder.addCase(fetchAllPosts.fulfilled, (state, action) => {
+    builder.addCase(fetchAllPosts.fulfilled, (state: any, action) => {
       state.posts.data = action.payload;
       state.posts.loading = false;
     });
-    builder.addCase(fetchAllPosts.rejected, (state) => {
+    builder.addCase(fetchAllPosts.rejected, (state: any) => {
       state.posts.loading = false;
     });
-    builder.addCase(fetchAllTags.pending, (state) => {
+    builder.addCase(fetchAllTags.pending, (state: any) => {
       state.tags.data = [];
       state.tags.loading = true;
     });
-    builder.addCase(fetchAllTags.fulfilled, (state, action) => {
+    builder.addCase(fetchAllTags.fulfilled, (state: any, action) => {
       state.tags.data = action.payload;
       state.tags.loading = false;
     });
-    builder.addCase(fetchAllTags.rejected, (state) => {
+    builder.addCase(fetchAllTags.rejected, (state: any) => {
       state.tags.loading = false;
     });
   },

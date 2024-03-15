@@ -1,4 +1,3 @@
-import React from 'react';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 
@@ -29,7 +28,7 @@ export const Header = () => {
                 <Link to="/add-post" className={styles['add-post']}>
                   <AddIcon />
                 </Link>
-                <button className={styles.btn} onClick={onClickLogout} variant="contained" color="error">
+                <button className={styles.btn} onClick={onClickLogout} color="error">
                   Вийти
                 </button>
               </>

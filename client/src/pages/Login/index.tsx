@@ -1,4 +1,3 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -13,7 +12,7 @@ import styles from './Login.module.scss';
 
 export const Login = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
   const isAuth = useSelector(selectIsAuth);
 
   const {
@@ -27,7 +26,7 @@ export const Login = () => {
     },
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     dispatch(authLogin(data));
     console.log(data);
   };
@@ -37,9 +36,8 @@ export const Login = () => {
   }
 
   return (
-    <main className={styles.main + ' flex'}>
-      <h1 className="flex">test</h1>
-      {/* <Paper classes={{ root: styles.root }}>
+    <main className={styles.main}>
+      <Paper className={styles.root}>
         <Typography classes={{ root: styles.title }} variant="h5">
           Вхід в систему
         </Typography>
@@ -49,7 +47,7 @@ export const Login = () => {
             className={styles.field}
             label="E-Mail"
             fullWidth
-            error={errors.email}
+            error={!!errors.email}
             helperText={errors.email ? 'Неверно указана почта' : ''}
           />
           <TextField
@@ -58,14 +56,14 @@ export const Login = () => {
             label="Пароль"
             type="password"
             fullWidth
-            error={errors.password}
+            error={!!errors.password}
             helperText={errors.password ? 'Введите пароль' : ''}
           />
           <Button type="submit" size="large" variant="contained" fullWidth>
             Войти
           </Button>
         </form>
-      </Paper> */}
+      </Paper>
     </main>
   );
 };

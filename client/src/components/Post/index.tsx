@@ -1,4 +1,3 @@
-import React from 'react';
 import clsx from 'clsx';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Clear';
@@ -6,13 +5,13 @@ import EditIcon from '@mui/icons-material/Edit';
 import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 
-
 import styles from './Post.module.scss';
 import { UserInfo } from '../UserInfo';
 import { PostSkeleton } from './Skeleton';
 import { Link } from 'react-router-dom';
+import { FC } from 'react';
 
-export const Post = ({
+export const Post: FC<any> = ({
   id,
   title,
   createdAt,
@@ -26,7 +25,6 @@ export const Post = ({
   isLoading,
   isEditable,
 }) => {
-
   if (isLoading) {
     return <PostSkeleton />;
   }
@@ -57,7 +55,7 @@ export const Post = ({
             {isFullPost ? title : <Link to={`/posts/${id}`}>{title}</Link>}
           </h2>
           <ul className={styles.tags}>
-            {tags.map((name) => (
+            {tags.map((name: string) => (
               <li key={name}>
                 <a href={`/tag/${name}`}>#{name}</a>
               </li>

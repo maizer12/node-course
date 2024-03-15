@@ -1,4 +1,3 @@
-import React from 'react';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
@@ -14,7 +13,7 @@ import styles from './Login.module.scss';
 
 export const Registration = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
   const isAuth = useSelector(selectIsAuth);
 
   const {
@@ -29,7 +28,7 @@ export const Registration = () => {
     },
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     dispatch(authRegistration(data));
   };
 
@@ -50,7 +49,7 @@ export const Registration = () => {
           label="Полное имя"
           fullWidth
           {...register('fullName', { required: true })}
-          error={errors.email}
+          error={!!errors.email}
           helperText={errors.email ? 'Неверно указана почта' : ''}
         />
         <TextField
@@ -58,7 +57,7 @@ export const Registration = () => {
           label="E-Mail"
           fullWidth
           {...register('email', { required: true, pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/ })}
-          error={errors.email}
+          error={!!errors.email}
           helperText={errors.email ? 'Неверно указана почта' : ''}
         />
         <TextField
@@ -66,7 +65,7 @@ export const Registration = () => {
           className={styles.field}
           label="Пароль"
           fullWidth
-          error={errors.password}
+          error={!!errors.password}
           helperText={errors.password ? 'Введите пароль' : ''}
         />
         <Button type="submit" size="large" variant="contained" fullWidth>
