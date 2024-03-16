@@ -1,4 +1,4 @@
-import Button from '@mui/material/Button';
+import { Button } from '../../common';
 import AddIcon from '@mui/icons-material/Add';
 
 import styles from './Header.module.scss';
@@ -35,10 +35,12 @@ export const Header = () => {
             ) : (
               <>
                 <Link to="/login">
-                  <Button variant="outlined">Войти</Button>
+                  <Button variant="outlined" className={styles['btn-login']}>
+                    Увійти
+                  </Button>
                 </Link>
                 <Link to="/registration">
-                  <Button variant="contained">Создать аккаунт</Button>
+                  <Button>Створити акаунт</Button>
                 </Link>
               </>
             )}

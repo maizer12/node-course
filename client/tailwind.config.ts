@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         primary: '#6702b9',
-        white: '#efeff3',
+        white: '#fff',
         border: 'rgba(255, 255, 255, 0.3)',
       },
       padding: {

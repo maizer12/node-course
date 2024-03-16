@@ -1,9 +1,7 @@
 .main {
   @apply flex justify-center items-center;
   .root {
-    border: 1px solid #dedede;
-    height: fit-content;
-    @apply max-w-[450px] p-12;
+    @apply max-w-[450px] p-12 bg-[#fff];
   }
   .field {
     @apply mb-6;

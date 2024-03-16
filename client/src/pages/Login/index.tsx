@@ -1,8 +1,7 @@
 import { useForm } from 'react-hook-form';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
+import { Button } from '../../common';
 import { authLogin } from '../../store/slices/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -37,7 +36,7 @@ export const Login = () => {
 
   return (
     <main className={styles.main}>
-      <Paper className={styles.root}>
+      <div className={styles.root}>
         <Typography classes={{ root: styles.title }} variant="h5">
           Вхід в систему
         </Typography>
@@ -59,11 +58,9 @@ export const Login = () => {
             error={!!errors.password}
             helperText={errors.password ? 'Введите пароль' : ''}
           />
-          <Button type="submit" size="large" variant="contained" fullWidth>
-            Войти
-          </Button>
+          <Button>Увійти</Button>
         </form>
-      </Paper>
+      </div>
     </main>
   );
 };

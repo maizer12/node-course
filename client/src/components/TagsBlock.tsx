@@ -11,7 +11,7 @@ import { FC } from 'react';
 
 export const TagsBlock: FC<any> = ({ items, isLoading = true }) => {
   return (
-    <SideBlock title="Тэги">
+    <SideBlock title="Популярні Теги">
       <List>
         {(isLoading ? [...Array(5)] : items).map((name: string, i: number) => (
           <a style={{ textDecoration: 'none', color: 'black' }} href={`/tags/${name}`}>

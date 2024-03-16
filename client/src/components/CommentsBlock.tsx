@@ -5,13 +5,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import Skeleton from '@mui/material/Skeleton';
 
 export const CommentsBlock: FC<any> = ({ items, children, isLoading = true }) => {
   return (
-    <SideBlock title="Комментарии">
+    <SideBlock title="Останні коментарі:">
       <List>
         {(isLoading ? [...Array(5)] : items).map((obj: any, index: number) => (
           <React.Fragment key={index}>
@@ -32,7 +31,6 @@ export const CommentsBlock: FC<any> = ({ items, children, isLoading = true }) =>
                 <ListItemText primary={obj.user.fullName} secondary={obj.text} />
               )}
             </ListItem>
-            <Divider variant="inset" component="li" />
           </React.Fragment>
         ))}
       </List>

@@ -5,11 +5,11 @@ import { FC } from 'react';
 
 export const SideBlock: FC<any> = ({ title, children }) => {
   return (
-    <Paper classes={{ root: styles.root }}>
+    <div className={styles.root}>
       <Typography variant="h6" classes={{ root: styles.title }}>
         {title}
       </Typography>
       {children}
-    </Paper>
+    </div>
   );
 };

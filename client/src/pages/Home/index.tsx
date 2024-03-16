@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+// import Tabs from '@mui/material/Tabs';
+import { Tabs } from '../../common';
 import Grid from '@mui/material/Grid';
-import { fetchAllPosts, fetchAllTags, setSort } from '../store/slices/postsSlice';
+import { fetchAllPosts, fetchAllTags, setSort } from '../../store/slices/postsSlice';
 
-import { Post } from '../components/Post';
-import { TagsBlock } from '../components/TagsBlock';
-import { CommentsBlock } from '../components/CommentsBlock';
+import { Post } from '../../components/Post';
+import { TagsBlock } from '../../components/TagsBlock';
+import { CommentsBlock } from '../../components/CommentsBlock';
 import { useDispatch, useSelector } from 'react-redux';
+import styles from './Home.module.scss';
 
 const tabsItems = [
   { name: 'Нові', value: 'new' },
@@ -29,16 +30,12 @@ export const Home = () => {
   }, [sort]);
 
   const clickTab = (value: string) => {
+    console.log(value);
     dispatch(setSort(value));
   };
-
   return (
-    <>
-      <Tabs style={{ marginBottom: 15 }} value={sort} aria-label="basic tabs example">
-        {tabsItems.map((e) => (
-          <Tab label={e.name} key={e.value} value={e.value} onClick={() => clickTab(e.value)} />
-        ))}
-      </Tabs>
+    <main className={styles.main}>
+      <Tabs data={tabsItems} value={sort} setTab={clickTab} />
       <Grid container spacing={4}>
         <Grid xs={8} item>
           {posts.loading
@@ -81,6 +78,6 @@ export const Home = () => {
           />
         </Grid>
       </Grid>
-    </>
+    </main>
   );
 };

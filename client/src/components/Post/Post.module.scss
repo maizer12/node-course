@@ -1,22 +1,18 @@
 $blue: #4361ee;
-
 .root {
   background-color: #fff;
-  border: 1px solid #dedede;
+  border: 1px solid rgba(#dedede, 0);
   border-radius: 6px;
   overflow: hidden;
   margin-bottom: 15px;
   position: relative;
-
   &:hover {
     border: 1px solid $blue;
     box-shadow: 0 0 0 1px $blue;
-
     .editButtons {
       opacity: 1;
     }
   }
-
   &Full {
     &:hover {
       background-color: #fff;
@@ -30,7 +26,6 @@ $blue: #4361ee;
   width: 100%;
   height: 300px;
   object-fit: cover;
-
   &Full {
     min-height: 300px;
     height: 100%;
@@ -43,7 +38,6 @@ $blue: #4361ee;
 
 .content {
   margin: 30px 0 50px;
-
   p {
     font-size: 22px;
     line-height: 36px;
@@ -57,16 +51,13 @@ $blue: #4361ee;
 .title {
   font-size: 28px;
   margin: 0;
-
   a {
     text-decoration: none;
     color: #000;
-
     &:hover {
       color: $blue;
     }
   }
-
   &Full {
     font-size: 42px;
     font-weight: 900;
@@ -77,17 +68,14 @@ $blue: #4361ee;
   list-style: none;
   padding: 0;
   margin: 5px 0 0 0;
-
   li {
     display: inline-block;
     font-size: 14px;
     margin-right: 15px;
     opacity: 0.5;
-
     &:hover {
       opacity: 1;
     }
-
     a {
       text-decoration: none;
       color: #000;
@@ -99,14 +87,12 @@ $blue: #4361ee;
   list-style: none;
   padding: 0;
   margin: 20px 0 0 0;
-
   li {
     display: inline-flex;
     align-items: center;
     font-size: 14px;
     margin-right: 20px;
     opacity: 0.5;
-
     svg {
       font-size: 18px;
       margin-right: 5px;
@@ -120,11 +106,9 @@ $blue: #4361ee;
   border-radius: 6px;
   overflow: hidden;
   margin-bottom: 15px;
-
   &Content {
     padding: 20px;
   }
-
   &Info {
     margin-left: 50px;
   }
@@ -132,7 +116,6 @@ $blue: #4361ee;
 
 .skeletonUser {
   display: flex;
-
   &Details {
     display: flex;
     flex-direction: column;
@@ -141,7 +124,6 @@ $blue: #4361ee;
 
 .skeletonTags {
   display: flex;
-
   span {
     margin-right: 15px;
   }

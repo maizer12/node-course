@@ -1,0 +1,13 @@
+.tabs {
+  @apply flex mb-10;
+}
+
+.tab {
+  @apply px-8 py-3 duration-500 border-b-2;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.active {
+  @apply text-primary border-primary;
+}
