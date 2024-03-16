@@ -9,7 +9,7 @@ const initialState = {
     error: '',
   },
   tags: {
-    data: [],
+    data: null,
     loading: '',
     error: '',
   },

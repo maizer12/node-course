@@ -1,7 +1,5 @@
 import { useEffect } from 'react';
-// import Tabs from '@mui/material/Tabs';
 import { Tabs } from '../../common';
-import Grid from '@mui/material/Grid';
 import { fetchAllPosts, fetchAllTags, setSort } from '../../store/slices/postsSlice';
 
 import { Post } from '../../components/Post';
@@ -35,49 +33,47 @@ export const Home = () => {
   };
   return (
     <main className={styles.main}>
-      <Tabs data={tabsItems} value={sort} setTab={clickTab} />
-      <Grid container spacing={4}>
-        <Grid xs={8} item>
-          {posts.loading
-            ? [...Array(5)].map((_, i) => <Post isLoading={true} key={i} />)
-            : posts.data.map((e: any, i: number) => (
-                <Post
-                  id={e._id}
-                  key={i}
-                  title={e.title}
-                  imageUrl={e.imageUrl || ''}
-                  user={e.user}
-                  createdAt={'12 июня 2022 г.'}
-                  viewsCount={e.viewsCount}
-                  commentsCount={3}
-                  tags={e.tags}
-                  isEditable={userId && userId === e.user._id}
-                />
-              ))}
-        </Grid>
-        <Grid xs={4} item>
-          {tags.loading ? <TagsBlock isLoading={true} /> : <TagsBlock items={tags.data} isLoading={false} />}
-          <CommentsBlock
-            items={[
-              {
-                user: {
-                  fullName: 'Вася Пупкин',
-                  avatarUrl: 'https://mui.com/static/images/avatar/1.jpg',
-                },
-                text: 'Это тестовый комментарий',
+      <div className={styles.content}>
+        <Tabs data={tabsItems} value={sort} setTab={clickTab} />
+        {posts.loading
+          ? [...Array(5)].map((_, i) => <Post isLoading={true} key={i} />)
+          : posts.data.map((e: any, i: number) => (
+              <Post
+                id={e._id}
+                key={i}
+                title={e.title}
+                imageUrl={e.imageUrl || ''}
+                user={e.user}
+                createdAt={'12 июня 2022 г.'}
+                viewsCount={e.viewsCount}
+                commentsCount={3}
+                tags={e.tags}
+                isEditable={userId && userId === e.user._id}
+              />
+            ))}
+      </div>
+      <div className={styles.sidebar}>
+        {tags.loading ? <TagsBlock isLoading={true} /> : <TagsBlock items={tags.data} isLoading={false} />}
+        <CommentsBlock
+          items={[
+            {
+              user: {
+                fullName: 'Вася Пупкин',
+                avatarUrl: 'https://mui.com/static/images/avatar/1.jpg',
               },
-              {
-                user: {
-                  fullName: 'Иван Иванов',
-                  avatarUrl: 'https://mui.com/static/images/avatar/2.jpg',
-                },
-                text: 'When displaying three lines or more, the avatar is not aligned at the top. You should set the prop to align the avatar at the top',
+              text: 'Это тестовый комментарий',
+            },
+            {
+              user: {
+                fullName: 'Иван Иванов',
+                avatarUrl: 'https://mui.com/static/images/avatar/2.jpg',
               },
-            ]}
-            isLoading={false}
-          />
-        </Grid>
-      </Grid>
+              text: 'When displaying three lines or more, the avatar is not aligned at the top. You should set the prop to align the avatar at the top',
+            },
+          ]}
+          isLoading={false}
+        />
+      </div>
     </main>
   );
 };

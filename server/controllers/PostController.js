@@ -52,19 +52,21 @@ export const getAll = async (req, res) => {
     });
   }
 };
+const getPopularTags = async (tags) => {
+  const promises = tags.map(async (tag) => {
+    const res = await PostModel.find({ tags: { $in: [tag] } }).exec();
+    return { title: tag, count: res.length };
+  });
+
+  return Promise.all(promises);
+};
+
 export const getLastTags = async (req, res) => {
   try {
-    const doc = await PostModel.find().limit(5).exec();
-    const tags = [
-      ...new Set(
-        doc
-          .map((e) => e.tags)
-          .flat()
-          .slice(0, 5),
-      ),
-    ];
-
-    res.json(tags);
+    const doc = await PostModel.aggregate([{ $project: { _id: 0, tags: 1 } }]);
+    const tags = [...new Set(doc.map((e) => e.tags).flat())];
+    const result = await getPopularTags(tags);
+    res.json(result);
   } catch (err) {
     console.log(err);
     res.status(404).json({

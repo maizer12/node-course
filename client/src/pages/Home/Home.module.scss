@@ -1,3 +1,13 @@
 .main {
+  @apply grid;
+  grid-template-columns: 3fr 1.4fr;
+  gap: 50px;
+}
+
+.content {
   @apply bg-white;
+}
+
+.sidebar {
+  @apply bg-white h-fit;
 }

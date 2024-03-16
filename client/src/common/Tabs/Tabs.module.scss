@@ -3,7 +3,7 @@
 }
 
 .tab {
-  @apply px-8 py-3 duration-500 border-b-2;
+  @apply px-8 py-3 duration-500 border-b-2 text-gray-400;
   cursor: pointer;
   font-weight: 700;
 }
