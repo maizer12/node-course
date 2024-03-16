@@ -4,7 +4,7 @@ import { checkAuth } from '../utils/checkAuth.js';
 
 const router = express.Router();
 
-router.get('/posts/:type', PostsController.getAll);
+router.get('/posts', PostsController.getAll);
 router.get('/tags', PostsController.getLastTags);
 router.get('/post/:id', PostsController.getOne);
 router.post('/posts', checkAuth, PostsController.createPost);

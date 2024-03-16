@@ -40,11 +40,15 @@ export const updatePost = async (req, res) => {
     });
   }
 };
+
 export const getAll = async (req, res) => {
-  const { type } = req.params;
-  const sort = type === 'popular' ? { viewsCount: -1 } : { createdAt: -1 };
+  const { sort, tag } = req.query;
+  const getSort = sort === 'popular' ? { viewsCount: -1 } : { createdAt: -1 };
   try {
-    const posts = await PostModel.find().sort(sort).populate('user').exec();
+    const posts = await PostModel.find(!!tag ? { tags: tag } : {})
+      .sort(getSort)
+      .populate('user')
+      .exec();
     res.json(posts);
   } catch (err) {
     res.status(404).json({
@@ -52,21 +56,17 @@ export const getAll = async (req, res) => {
     });
   }
 };
-const getPopularTags = async (tags) => {
-  const promises = tags.map(async (tag) => {
-    const res = await PostModel.find({ tags: { $in: [tag] } }).exec();
-    return { title: tag, count: res.length };
-  });
-
-  return Promise.all(promises);
-};
 
 export const getLastTags = async (req, res) => {
   try {
-    const doc = await PostModel.aggregate([{ $project: { _id: 0, tags: 1 } }]);
-    const tags = [...new Set(doc.map((e) => e.tags).flat())];
-    const result = await getPopularTags(tags);
-    res.json(result);
+    const doc = await PostModel.aggregate([
+      { $unwind: '$tags' },
+      { $group: { _id: '$tags', count: { $sum: 1 } } },
+      { $sort: { count: -1 } },
+      { $project: { _id: 0, title: '$_id', count: 1 } },
+    ]);
+
+    res.json(doc);
   } catch (err) {
     console.log(err);
     res.status(404).json({

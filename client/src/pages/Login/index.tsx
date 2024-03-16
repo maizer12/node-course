@@ -27,7 +27,6 @@ export const Login = () => {
 
   const onSubmit = (data: any) => {
     dispatch(authLogin(data));
-    console.log(data);
   };
 
   if (isAuth) {

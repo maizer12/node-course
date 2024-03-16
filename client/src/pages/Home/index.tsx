@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { Tabs } from '../../common';
 import { fetchAllPosts, fetchAllTags, setSort } from '../../store/slices/postsSlice';
 
@@ -7,6 +7,8 @@ import { TagsBlock } from '../../components/TagsBlock';
 import { CommentsBlock } from '../../components/CommentsBlock';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Home.module.scss';
+import { useLocation } from 'react-router-dom';
+import qs from 'qs';
 
 const tabsItems = [
   { name: 'Нові', value: 'new' },
@@ -14,6 +16,9 @@ const tabsItems = [
 ];
 
 export const Home = () => {
+  const location = useLocation();
+  const settingParams = qs.parse(location.search.slice(1));
+
   const dispatch: any = useDispatch();
   const { posts, tags, sort } = useSelector((state: any) => state.postsSlice);
   const { data } = useSelector((state: any) => state.authSlice);
@@ -24,11 +29,14 @@ export const Home = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(fetchAllPosts(sort));
-  }, [sort]);
+    const params = {
+      sort,
+      ...settingParams,
+    };
+    dispatch(fetchAllPosts(params));
+  }, [sort, location]);
 
   const clickTab = (value: string) => {
-    console.log(value);
     dispatch(setSort(value));
   };
   return (
@@ -53,7 +61,11 @@ export const Home = () => {
             ))}
       </div>
       <div className={styles.sidebar}>
-        {tags.loading ? <TagsBlock isLoading={true} /> : <TagsBlock items={tags.data} isLoading={false} />}
+        {tags.loading ? (
+          <TagsBlock isLoading={true} />
+        ) : (
+          <TagsBlock items={tags.data} isLoading={false} active={settingParams.tag} />
+        )}
         <CommentsBlock
           items={[
             {

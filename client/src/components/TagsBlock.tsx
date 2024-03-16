@@ -3,15 +3,13 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import TagIcon from '@mui/icons-material/Tag';
-import ListItemText from '@mui/material/ListItemText';
 import Skeleton from '@mui/material/Skeleton';
 
 import { SideBlock } from './SideBlock';
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 
-export const TagsBlock: FC<any> = ({ items, isLoading = true }) => {
-  console.log(items);
-
+export const TagsBlock: FC<any> = ({ items, isLoading = true, active }) => {
   return (
     <SideBlock title="Популярні Теги:">
       <List>
@@ -19,7 +17,11 @@ export const TagsBlock: FC<any> = ({ items, isLoading = true }) => {
           ? [...Array(5)]
           : !!items &&
             items.map((e: any, i: number) => (
-              <a style={{ textDecoration: 'none', color: 'black' }} href={`/tags/${e.title}`}>
+              <Link
+                style={{ textDecoration: 'none' }}
+                to={`/?tag=${e.title}`}
+                className={active === e.title ? 'text-primary' : ''}
+              >
                 <ListItem key={i} disablePadding>
                   <ListItemButton>
                     <ListItemIcon>
@@ -34,7 +36,7 @@ export const TagsBlock: FC<any> = ({ items, isLoading = true }) => {
                     )}
                   </ListItemButton>
                 </ListItem>
-              </a>
+              </Link>
             ))}
       </List>
     </SideBlock>

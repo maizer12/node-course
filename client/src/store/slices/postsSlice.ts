@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from '../../axios';
+import qs from 'qs';
 
 const initialState = {
   sort: 'new',
@@ -15,8 +16,10 @@ const initialState = {
   },
 };
 
-export const fetchAllPosts = createAsyncThunk('posts/fetchAllPosts', async (sort: any) => {
-  const data = await axios.get('/posts/' + sort);
+export const fetchAllPosts = createAsyncThunk('posts/fetchAllPosts', async (params: any) => {
+  const { sort, tag } = params;
+  const linkSearch = qs.stringify({ sort, tag });
+  const data = await axios.get('/posts?' + linkSearch);
   return data.data;
 });
 
