@@ -11,3 +11,7 @@
     @apply bg-primary text-white;
   }
 }
+
+.sm {
+  @apply p-1 min-w-[75px] text-sm rounded-sm px-3;
+}

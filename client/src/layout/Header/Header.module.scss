@@ -36,18 +36,6 @@
   }
 }
 
-.btn {
-  background: none;
-  border: none;
-  font-family: 'Montserrat', sans-serif;
-  cursor: pointer;
-  transition: 0.6s;
-  font-weight: 600;
-  &:hover {
-    color: #4361ee;
-  }
-}
-
 .add-post {
   border: 1px solid black;
   border-radius: 50%;
@@ -64,4 +52,24 @@
     border: 1px solid #4361ee;
     color: #4361ee;
   }
+}
+
+.email {
+  @apply text-sm m-0 p-0;
+  line-height: 1;
+}
+
+.title {
+  @apply text-sm m-0 p-0 mb-1;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.btn {
+  line-height: 1;
+  border-bottom: 1px solid black;
+}
+
+.icon {
+  @apply border;
 }

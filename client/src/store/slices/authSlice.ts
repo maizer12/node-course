@@ -33,7 +33,6 @@ const authSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(authLogin.pending, (state: any) => {
-      state.data = [];
       state.loading = true;
     });
     builder.addCase(authLogin.fulfilled, (state: any, action) => {
@@ -45,7 +44,6 @@ const authSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(authRegistration.pending, (state: any) => {
-      state.data = [];
       state.loading = true;
     });
     builder.addCase(authRegistration.fulfilled, (state: any, action) => {
@@ -57,7 +55,6 @@ const authSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(authMe.pending, (state: any) => {
-      state.data = [];
       state.loading = true;
     });
     builder.addCase(authMe.fulfilled, (state: any, action) => {

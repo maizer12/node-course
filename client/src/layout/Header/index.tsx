@@ -1,15 +1,18 @@
 import { Button } from '../../common';
-import AddIcon from '@mui/icons-material/Add';
-
 import styles from './Header.module.scss';
 import Container from '@mui/material/Container';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectIsAuth, logout } from '../../store/slices/authSlice';
+import { useAppSelector } from '../../hooks/redux';
+import { User } from 'lucide-react';
 
 export const Header = () => {
+  const { data }: any = useAppSelector((state) => state.authSlice);
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
+
+  !!data && console.log(data);
 
   const onClickLogout = () => {
     dispatch(logout());
@@ -25,22 +28,28 @@ export const Header = () => {
           <div className={styles.buttons}>
             {isAuth ? (
               <>
-                <Link to="/add-post" className={styles['add-post']}>
-                  <AddIcon />
-                </Link>
-                <button className={styles.btn} onClick={onClickLogout} color="error">
-                  Вийти
-                </button>
+                {data && (
+                  <div className="flex items-center gap-2">
+                    <User width={37} height={37} strokeWidth={1} className={styles.icon} />
+                    <div>
+                      <h4 className={styles.title}>{data.data.fullName}</h4>
+                      <p className={styles.email}>{data.data.email}</p>
+                    </div>
+                    <Button className={styles.btn} onClick={onClickLogout} size="sm">
+                      Вийти
+                    </Button>
+                  </div>
+                )}
               </>
             ) : (
               <>
                 <Link to="/login">
-                  <Button variant="outlined" className={styles['btn-login']}>
+                  <Button variant="outlined" className={styles['btn-login']} size="sm">
                     Увійти
                   </Button>
                 </Link>
                 <Link to="/registration">
-                  <Button>Створити акаунт</Button>
+                  <Button size="sm">Створити акаунт</Button>
                 </Link>
               </>
             )}
