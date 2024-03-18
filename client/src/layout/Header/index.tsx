@@ -6,13 +6,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectIsAuth, logout } from '../../store/slices/authSlice';
 import { useAppSelector } from '../../hooks/redux';
 import { User } from 'lucide-react';
+import cn from 'classnames';
 
 export const Header = () => {
   const { data }: any = useAppSelector((state) => state.authSlice);
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
-
-  !!data && console.log(data);
 
   const onClickLogout = () => {
     dispatch(logout());
@@ -35,7 +34,7 @@ export const Header = () => {
                       <h4 className={styles.title}>{data.data.fullName}</h4>
                       <p className={styles.email}>{data.data.email}</p>
                     </div>
-                    <Button className={styles.btn} onClick={onClickLogout} size="sm">
+                    <Button className={cn(styles.btn, 'p-2')} onClick={onClickLogout} size="sm">
                       Вийти
                     </Button>
                   </div>

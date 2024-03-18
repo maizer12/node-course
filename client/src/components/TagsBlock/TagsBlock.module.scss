@@ -1,0 +1,12 @@
+.item {
+  @apply p-3 duration-700 flex border-l-2 border-transparent;
+  &:hover {
+    @apply bg-gray-100;
+  }
+}
+
+.active {
+  li {
+    @apply border-primary bg-gray-100;
+  }
+}
