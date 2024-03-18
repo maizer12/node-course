@@ -3,7 +3,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import TagIcon from '@mui/icons-material/Tag';
 import Skeleton from '@mui/material/Skeleton';
 import styles from './TagsBlock.module.scss';
-import cn from 'classnames';
 
 import { SideBlock } from '../SideBlock';
 import { FC } from 'react';
@@ -16,7 +15,7 @@ export const TagsBlock: FC<any> = ({ items, isLoading = true, active }) => {
         {isLoading
           ? [...Array(5)]
           : !!items &&
-            items.map((e: any, i: number) => (
+            items.map((e: any) => (
               <Link
                 style={{ textDecoration: 'none' }}
                 to={`/?tag=${e.title}`}
