@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Button, Modal, Tabs } from '../../common';
-import { fetchAllPosts, fetchAllTags, setSort } from '../../store/slices/postsSlice';
-
+import { useEffect } from 'react';
+import { fetchAllPosts, fetchAllTags } from '../../store/slices/postsSlice/featchPosts.ts';
 import { Post } from '../../components/Post';
 import { TagsBlock } from '../../components/TagsBlock';
 import { CommentsBlock } from '../../components/CommentsBlock';
@@ -9,19 +7,16 @@ import { useSelector } from 'react-redux';
 import styles from './Home.module.scss';
 import { useLocation } from 'react-router-dom';
 import qs from 'qs';
-import { useAppDispatch } from '../../hooks/redux';
-
-const tabsItems = [
-  { name: 'Нові', value: 'new' },
-  { name: 'Популярні', value: 'popular' },
-];
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import CreatePostModal from '../../components/CreatePostModal/index.tsx';
+import ControlPanel from './ControlPanel/index.tsx';
 
 export const Home = () => {
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const dispatch: any = useAppDispatch();
+  const { isModalCreate } = useAppSelector((state) => state.postsSlice);
   const location = useLocation();
   const settingParams = qs.parse(location.search.slice(1));
 
-  const dispatch: any = useAppDispatch();
   const { posts, tags, sort } = useSelector((state: any) => state.postsSlice);
   const { data } = useSelector((state: any) => state.authSlice);
   const userId = data?.data?._id;
@@ -38,18 +33,10 @@ export const Home = () => {
     dispatch(fetchAllPosts(params));
   }, [sort, location]);
 
-  const clickTab = (value: string) => {
-    dispatch(setSort(value));
-  };
   return (
     <main className={styles.main}>
       <div>
-        <div className="flex mb-10 justify-between">
-          <Tabs data={tabsItems} value={sort} setTab={clickTab} />
-          <Button size="sm" className="p-3 m-1">
-            Створити пост
-          </Button>
-        </div>
+        <ControlPanel />
         <div className={styles.content}>
           {posts.loading
             ? [...Array(5)].map((_, i) => <Post isLoading={true} key={i} />)
@@ -95,7 +82,7 @@ export const Home = () => {
           isLoading={false}
         />
       </div>
-      {showModal && <Modal setClose={setShowModal} />}
+      {isModalCreate && <CreatePostModal />}
     </main>
   );
 };

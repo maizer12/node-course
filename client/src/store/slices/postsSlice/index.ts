@@ -1,8 +1,8 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from '../../axios';
-import qs from 'qs';
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchAllPosts, fetchAllTags } from './featchPosts';
+import { IPostsSliceState } from './postsSlice.type';
 
-const initialState = {
+const initialState: IPostsSliceState = {
   sort: 'new',
   posts: {
     data: [],
@@ -14,26 +14,18 @@ const initialState = {
     loading: '',
     error: '',
   },
+  isModalCreate: false,
 };
-
-export const fetchAllPosts = createAsyncThunk('posts/fetchAllPosts', async (params: any) => {
-  const { sort, tag } = params;
-  const linkSearch = qs.stringify({ sort, tag });
-  const data = await axios.get('/posts?' + linkSearch);
-  return data.data;
-});
-
-export const fetchAllTags = createAsyncThunk('posts/fetchAllTags', async () => {
-  const data = await axios.get('/tags');
-  return data.data;
-});
 
 const postSlice = createSlice({
   name: 'post',
   initialState,
   reducers: {
-    setSort: (state: any, action) => {
+    setSort: (state, action) => {
       state.sort = action.payload;
+    },
+    setCreateModal: (state, action: { payload: boolean }) => {
+      state.isModalCreate = action.payload;
     },
   },
   extraReducers(builder) {
@@ -62,5 +54,5 @@ const postSlice = createSlice({
   },
 });
 
-export const { setSort } = postSlice.actions;
+export const { setSort, setCreateModal } = postSlice.actions;
 export default postSlice.reducer;

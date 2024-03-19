@@ -2,9 +2,15 @@
   @apply fixed w-full left-0 top-0 h-full justify-center flex items-center;
   background-color: rgba(#000000, 0.6);
   .content {
-    @apply bg-gray-50 min-w-[460px] min-h-[320px] p-4;
+    @apply bg-gray-50 min-w-[460px] min-h-[320px] p-4 relative;
     h3 {
       font-weight: 700;
+    }
+  }
+  .close {
+    @apply cursor-pointer duration-500 absolute right-4 top-5;
+    &:hover {
+      @apply text-red-700;
     }
   }
 }
