@@ -2,12 +2,13 @@ import { useForm } from 'react-hook-form';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import { Button } from '../../common';
-import { authLogin } from '../../store/slices/authSlice';
+import { authLogin } from '../../store/slices/authSlice/fethAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { selectIsAuth } from '../../store/slices/authSlice';
 
 import styles from './Login.module.scss';
+import { IAuthLogin } from '../../store/slices/authSlice/authSlice.types';
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ export const Login = () => {
     },
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: IAuthLogin) => {
     dispatch(authLogin(data));
   };
 

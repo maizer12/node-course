@@ -1,0 +1,30 @@
+.email {
+  @apply text-sm m-0 p-0;
+  line-height: 1;
+}
+
+.title {
+  @apply text-sm m-0 p-0 mb-1;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.btn {
+  line-height: 1;
+  border-bottom: 1px solid black;
+}
+
+.icon {
+  @apply border;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  button {
+    margin-left: 10px;
+  }
+  a {
+    text-decoration: none;
+  }
+}

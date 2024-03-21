@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import { useDispatch, useSelector } from 'react-redux';
-import { authRegistration } from '../../store/slices/authSlice';
+import { authRegistration } from '../../store/slices/authSlice/fethAuth.ts';
 import { useNavigate } from 'react-router-dom';
 import { selectIsAuth } from '../../store/slices/authSlice';
 import { useForm } from 'react-hook-form';
