@@ -1,5 +1,5 @@
 import express from 'express';
-import * as PostsController from '../controllers/PostController.js';
+import PostsController from '../controllers/post-controller.js';
 import { checkAuth } from '../utils/checkAuth.js';
 
 const router = express.Router();

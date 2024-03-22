@@ -30,20 +30,18 @@ const HeaderAuth: FC = () => {
     <div className={styles.buttons}>
       {isAuth ? (
         <>
-          {data && (
-            <>
-              <div className="flex items-center gap-2">
-                <User width={37} height={37} strokeWidth={1} className={styles.icon} />
-                <div>
-                  <h4 className={styles.title}>{data.data.fullName}</h4>
-                  <p className={styles.email}>{data.data.email}</p>
-                </div>
-                <Button className={cn(styles.btn, 'p-2')} onClick={onClickLogout} size="sm">
-                  Вийти
-                </Button>
+          <>
+            <div className="flex items-center gap-2">
+              <User width={37} height={37} strokeWidth={1} className={styles.icon} />
+              <div>
+                <h4 className={styles.title}>{data.data.fullName}</h4>
+                <p className={styles.email}>{data.data.email}</p>
               </div>
-            </>
-          )}
+              <Button className={cn(styles.btn, 'p-2')} onClick={onClickLogout} size="sm">
+                Вийти
+              </Button>
+            </div>
+          </>
         </>
       ) : (
         <>

@@ -1,16 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { Home, FullPost, Registration, AddPost, Login } from './pages';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { authMe } from './store/slices/authSlice/fethAuth.ts';
 import Layout from './layout';
 
 function App() {
-  const dispatch: any = useDispatch();
-  useEffect(() => {
-    dispatch(authMe());
-  }, []);
-
   return (
     <Layout>
       <Routes>

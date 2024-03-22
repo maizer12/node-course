@@ -1,4 +1,4 @@
-import * as UserController from '../controllers/UserController.js';
+import UserController from '../controllers/user-controller.js';
 import { registerValidation } from '../validations/auth.js';
 import { checkAuth } from '../utils/checkAuth.js';
 import express from 'express';
