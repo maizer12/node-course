@@ -10,7 +10,7 @@ import { selectIsAuth } from '../../store/slices/authSlice';
 import styles from './Login.module.scss';
 import { IAuthLogin } from '../../store/slices/authSlice/authSlice.types';
 
-export const Login = () => {
+const Login = () => {
   const navigate = useNavigate();
   const dispatch: any = useDispatch();
   const isAuth = useSelector(selectIsAuth);
@@ -64,3 +64,5 @@ export const Login = () => {
     </main>
   );
 };
+
+export default Login;

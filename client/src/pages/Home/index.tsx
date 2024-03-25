@@ -11,7 +11,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import CreatePostModal from '../../components/CreatePostModal/index.tsx';
 import ControlPanel from './ControlPanel/index.tsx';
 
-export const Home = () => {
+const Home = () => {
   const dispatch: any = useAppDispatch();
   const { isModalCreate } = useAppSelector((state) => state.postsSlice);
   const location = useLocation();
@@ -86,3 +86,5 @@ export const Home = () => {
     </main>
   );
 };
+
+export default Home;

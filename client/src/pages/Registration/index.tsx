@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form';
 
 import styles from './Login.module.scss';
 
-export const Registration = () => {
+const Registration = () => {
   const navigate = useNavigate();
   const dispatch: any = useDispatch();
   const isAuth = useSelector(selectIsAuth);
@@ -75,3 +75,5 @@ export const Registration = () => {
     </Paper>
   );
 };
+
+export default Registration;
