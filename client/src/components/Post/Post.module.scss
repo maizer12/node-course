@@ -1,16 +1,12 @@
 $blue: #4361ee;
 .root {
   background-color: #fff;
-  border: 1px solid rgba(#dedede, 0);
   overflow: hidden;
   margin-bottom: 15px;
   position: relative;
+  @apply cursor-pointer mb-5 duration-700 border-t-2;
   &:hover {
-    border: 1px solid $blue;
-    box-shadow: 0 0 0 1px $blue;
-    .editButtons {
-      opacity: 1;
-    }
+    @apply border-primary;
   }
   &Full {
     &:hover {

@@ -6,7 +6,7 @@ import { Post } from '../components/Post';
 import { Index } from '../components/AddComment';
 import { CommentsBlock } from '../components/CommentsBlock';
 
-export const FullPost = () => {
+const FullPost = () => {
   const params = useParams();
   const [data, setData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -65,3 +65,5 @@ export const FullPost = () => {
     </>
   );
 };
+
+export default FullPost;
