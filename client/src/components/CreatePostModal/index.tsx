@@ -1,4 +1,4 @@
-import { Input, Modal, Textarea, HTag } from '../../common';
+import { Input, Modal, Textarea, HTag, Button } from '../../common';
 import { FC, useState } from 'react';
 import { useAppDispatch } from '../../hooks/redux';
 import { setCreateModal } from '../../store/slices/postsSlice';
@@ -8,8 +8,10 @@ import { Plus } from 'lucide-react';
 
 const CreatePostModal: FC = () => {
   const dispatch = useAppDispatch();
-  const [selected, setSelected] = useState(['papaya']);
+  const [selected, setSelected] = useState([]);
   const [imgLink, setImgLink] = useState('');
+  const [title, setTitle] = useState('');
+  const [text, setText] = useState('');
 
   const switchModal = (active: boolean) => {
     dispatch(setCreateModal(active));
@@ -33,13 +35,26 @@ const CreatePostModal: FC = () => {
       }
     }
   };
+  const createPost = async () => {
+    try {
+      const data = await axios.post('/posts', {
+        title: 'article test',
+        tags: selected,
+        text,
+        imageUrl: imgLink,
+      });
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Modal title="Створити пост:" setClose={switchModal}>
       <HTag tag="h4" className="my-4">
         Название поста:
       </HTag>
-      <Input type="field" value={selected} setValue={setSelected as (a: string | string[]) => void} />
+      <Input type="field" value={title} setValue={setTitle as (a: string | string[]) => void} />
       <HTag tag="h4" className="my-4">
         Теги для поста:
       </HTag>
@@ -47,12 +62,19 @@ const CreatePostModal: FC = () => {
       <HTag tag="h4" className="my-4">
         Опис поста:
       </HTag>
-      <Textarea placeholder="Enter text" />
-      <div className={styles.file + ' my-4'}>
-        <Plus />
-        <input type="file" onChange={(e) => loadFile(e)} />
-      </div>
-      {!!imgLink.length && <img src={baseURL + imgLink} className={styles.img} />}
+      <Textarea placeholder="Enter text" setValue={setText} value={text} />
+
+      {!!imgLink.length ? (
+        <img src={baseURL + imgLink} className={styles.img + ' my-4'} />
+      ) : (
+        <div className={styles.file + ' my-4'}>
+          <Plus />
+          <input type="file" onChange={(e) => loadFile(e)} />
+        </div>
+      )}
+      <Button className="mt-5" onClick={createPost}>
+        Створити пост
+      </Button>
     </Modal>
   );
 };

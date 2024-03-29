@@ -4,26 +4,26 @@ $blue: #4361ee;
   overflow: hidden;
   margin-bottom: 15px;
   position: relative;
-  @apply cursor-pointer mb-5 duration-700 border-t-2;
+}
+
+.image {
+  @apply border-t-transparent border-t-2 duration-700;
+  overflow: hidden;
+  height: 420px;
+  display: block;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
   &:hover {
     @apply border-primary;
   }
   &Full {
-    &:hover {
-      background-color: #fff;
-      border: 1px solid #dedede;
-      box-shadow: none;
-    }
-  }
-}
-
-.image {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  &Full {
     min-height: 300px;
     height: 100%;
+    border: none !important;
   }
 }
 

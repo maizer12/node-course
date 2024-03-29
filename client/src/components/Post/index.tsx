@@ -10,6 +10,7 @@ import { UserInfo } from '../UserInfo';
 import { PostSkeleton } from './Skeleton';
 import { Link } from 'react-router-dom';
 import { FC } from 'react';
+import { baseURL } from '../../axios';
 
 export const Post: FC<any> = ({
   id,
@@ -46,7 +47,9 @@ export const Post: FC<any> = ({
         </div>
       )}
       {imageUrl && (
-        <img className={clsx(styles.image, { [styles.imageFull]: isFullPost })} src={imageUrl} alt={title} />
+        <Link to={`/post/${id}`} className={clsx(styles.image, { [styles.imageFull]: isFullPost })}>
+          <img src={baseURL + imageUrl} alt={title} />
+        </Link>
       )}
       <div className={styles.wrapper}>
         <UserInfo {...user} additionalText={createdAt} />

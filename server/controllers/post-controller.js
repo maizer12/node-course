@@ -67,7 +67,7 @@ class PostController {
         { $project: { _id: 0, title: '$_id', count: 1 } },
       ]);
 
-      res.json(doc);
+      res.json(doc.slice(0, 5));
     } catch (err) {
       console.log(err);
       res.status(404).json({
