@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const baseURL =
-  window.location.hostname === 'localhost' ? 'http://localhost:4000' : 'https://node-blog-one.vercel.app';
+  window.location.hostname === 'localhost' ? 'http://localhost:4000' : 'https://vibenet-ij77.onrender.com';
 
 const instance = axios.create({
   baseURL,
