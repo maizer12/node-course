@@ -33,7 +33,7 @@ export const Post: FC<any> = ({
   }
   const onClickRemove = async () => {
     try {
-      const res = await axios.delete('/posts/' + id);
+      await axios.delete('/posts/' + id);
       dispatch(deletePost(id));
     } catch (e) {
       console.log(e);
