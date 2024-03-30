@@ -1,6 +1,7 @@
 .main {
   @apply fixed w-full left-0 top-0 h-full justify-center flex items-center;
   background-color: rgba(#000000, 0.6);
+  z-index: 999;
   .content {
     @apply bg-gray-50 min-w-[460px] min-h-[320px] p-4 relative;
     h3 {

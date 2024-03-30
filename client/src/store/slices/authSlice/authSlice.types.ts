@@ -1,7 +1,7 @@
 import { IUser } from '../../../models/IUser';
 
 export interface IAuthState {
-  data: null | IUser;
+  data: null | any;
   loading: boolean;
   error: string;
 }

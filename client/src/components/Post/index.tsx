@@ -1,16 +1,17 @@
 import clsx from 'clsx';
 import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Clear';
-import EditIcon from '@mui/icons-material/Edit';
 import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
-
+import axios from '../../axios.ts';
 import styles from './Post.module.scss';
 import { UserInfo } from '../UserInfo';
 import { PostSkeleton } from './Skeleton';
 import { Link } from 'react-router-dom';
 import { FC } from 'react';
 import { baseURL } from '../../axios';
+import { CircleX, Edit } from 'lucide-react';
+import { useAppDispatch } from '../../hooks/redux';
+import { deletePost } from '../../store/slices/postsSlice/index.ts';
 
 export const Post: FC<any> = ({
   id,
@@ -26,11 +27,18 @@ export const Post: FC<any> = ({
   isLoading,
   isEditable,
 }) => {
+  const dispatch = useAppDispatch();
   if (isLoading) {
     return <PostSkeleton />;
   }
-
-  const onClickRemove = () => {};
+  const onClickRemove = async () => {
+    try {
+      const res = await axios.delete('/posts/' + id);
+      dispatch(deletePost(id));
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>
@@ -38,11 +46,11 @@ export const Post: FC<any> = ({
         <div className={styles.editButtons}>
           <Link to={`/posts/${id}/edit`}>
             <IconButton color="primary">
-              <EditIcon />
+              <Edit className="text-black" />
             </IconButton>
           </Link>
           <IconButton onClick={onClickRemove} color="secondary">
-            <DeleteIcon />
+            <CircleX className="text-black" />
           </IconButton>
         </div>
       )}

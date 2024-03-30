@@ -8,7 +8,14 @@ export const Input: FC<InputProps> = ({ type, value, setValue, placeholder = 'En
     case 'tag':
       return <TagsInput value={value as string[]} onChange={setValue as (tags: string[]) => void} />;
     case 'field':
-      return <input className={styles.input} placeholder={placeholder} />;
+      return (
+        <input
+          className={styles.input}
+          placeholder={placeholder}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+      );
     default:
       return <></>;
   }

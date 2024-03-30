@@ -27,6 +27,12 @@ const postSlice = createSlice({
     setCreateModal: (state, action: { payload: boolean }) => {
       state.isModalCreate = action.payload;
     },
+    addPost(state, action: { payload: any }) {
+      state.posts.data = [action.payload, ...state.posts.data];
+    },
+    deletePost(state, action: { payload: string }) {
+      state.posts.data = state.posts.data.filter((e: any) => e._id !== action.payload);
+    },
   },
   extraReducers(builder) {
     builder.addCase(fetchAllPosts.pending, (state: any) => {
@@ -54,5 +60,5 @@ const postSlice = createSlice({
   },
 });
 
-export const { setSort, setCreateModal } = postSlice.actions;
+export const { setSort, setCreateModal, deletePost, addPost } = postSlice.actions;
 export default postSlice.reducer;

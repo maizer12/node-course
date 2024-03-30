@@ -1,7 +1,7 @@
 import { Input, Modal, Textarea, HTag, Button } from '../../common';
 import { FC, useState } from 'react';
-import { useAppDispatch } from '../../hooks/redux';
-import { setCreateModal } from '../../store/slices/postsSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { addPost, setCreateModal } from '../../store/slices/postsSlice';
 import axios, { baseURL } from '../../axios.ts';
 import styles from './CreatePostModal.module.scss';
 import { Plus } from 'lucide-react';
@@ -12,6 +12,7 @@ const CreatePostModal: FC = () => {
   const [imgLink, setImgLink] = useState('');
   const [title, setTitle] = useState('');
   const [text, setText] = useState('');
+  const { data } = useAppSelector((state) => state.authSlice);
 
   const switchModal = (active: boolean) => {
     dispatch(setCreateModal(active));
@@ -37,13 +38,17 @@ const CreatePostModal: FC = () => {
   };
   const createPost = async () => {
     try {
-      const data = await axios.post('/posts', {
-        title: 'article test',
+      const res = await axios.post('/posts', {
+        title,
         tags: selected,
         text,
         imageUrl: imgLink,
       });
-      console.log(data);
+      const newPost = { ...res.data, user: data.data };
+      if (data) {
+        dispatch(addPost(newPost));
+        switchModal(false);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -69,7 +74,7 @@ const CreatePostModal: FC = () => {
       ) : (
         <div className={styles.file + ' my-4'}>
           <Plus />
-          <input type="file" onChange={(e) => loadFile(e)} />
+          <input type="file" accept="image/png, image/jpeg" onChange={(e) => loadFile(e)} />
         </div>
       )}
       <Button className="mt-5" onClick={createPost}>
