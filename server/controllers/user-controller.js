@@ -17,29 +17,10 @@ class UserController {
 
   async authorization(req, res) {
     try {
-      const user = await UserModel.findOne({
-        email: req.body.email,
-      });
-
-      if (!user) return res.status(400).json({ message: 'Incorrect email or password!' });
-
-      const isPassword = await bcrypt.compare(req.body.password.toString(), user.passwordHash);
-
-      if (!isPassword) return res.status(400).json({ message: 'Incorrect email or password!' });
-
-      const token = jwt.sign({ _id: user._id }, 'secret123', { expiresIn: '30d' });
-
-      const { passwordHash, ...data } = user._doc;
-
-      res.json({
-        data,
-        token,
-      });
+      const user = await userService.login(req.body.email, req.body.password);
+      res.json(user);
     } catch (err) {
-      console.log(err);
-      res.status(400).json({
-        message: 'Failed to login',
-      });
+      res.status(404).json({ message: err });
     }
   }
 

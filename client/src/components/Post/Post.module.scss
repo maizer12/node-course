@@ -2,7 +2,6 @@ $blue: #4361ee;
 .root {
   background-color: #fff;
   overflow: hidden;
-  margin-bottom: 15px;
   position: relative;
 }
 
@@ -130,4 +129,14 @@ $blue: #4361ee;
   border-radius: 10px;
   transition: all 0.15s ease-in-out;
   @apply absolute;
+}
+
+@media (max-width: 480px) {
+  .image {
+    height: 240px;
+    @apply mb-2;
+  }
+  .title {
+    font-size: 19px;
+  }
 }

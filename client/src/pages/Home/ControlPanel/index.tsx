@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Button, Tabs } from '../../../common';
 import { setCreateModal, setSort } from '../../../store/slices/postsSlice';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-//import styles from './ControlPanel.module.scss';
+import styles from './ControlPanel.module.scss';
 
 const tabsItems = [
   { name: 'Нові', value: 'new' },
@@ -22,7 +22,7 @@ const ControlPanel: FC = () => {
   };
 
   return (
-    <div className="flex mb-10 justify-between">
+    <div className={'flex mb-10 justify-between ' + styles.main}>
       <Tabs data={tabsItems} value={sort} setTab={clickTab} />
       <Button size="sm" className="p-3 m-1" onClick={openCreateModal}>
         Створити пост

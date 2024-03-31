@@ -41,7 +41,7 @@ export const Post: FC<any> = ({
   };
 
   return (
-    <div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>
+    <div className={clsx(styles.root, 'mb-10 pb-4', { [styles.rootFull]: isFullPost })}>
       {isEditable && (
         <div className={styles.editButtons}>
           <Link to={`/posts/${id}/edit`}>
@@ -55,7 +55,7 @@ export const Post: FC<any> = ({
         </div>
       )}
       {imageUrl && (
-        <Link to={`/post/${id}`} className={clsx(styles.image, { [styles.imageFull]: isFullPost })}>
+        <Link to={`/post/${id}`} className={clsx(styles.image, 'mb-8', { [styles.imageFull]: isFullPost })}>
           <img src={baseURL + imageUrl} alt={title} />
         </Link>
       )}

@@ -33,7 +33,7 @@ const HeaderAuth: FC = () => {
           <>
             <div className="flex items-center gap-2">
               <User width={37} height={37} strokeWidth={1} className={styles.icon} />
-              <div>
+              <div className={styles['user-info']}>
                 <h4 className={styles.title}>{data.data.fullName}</h4>
                 <p className={styles.email}>{data.data.email}</p>
               </div>

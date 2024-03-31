@@ -2,10 +2,12 @@
   @apply grid;
   grid-template-columns: 3fr 1.4fr;
   gap: 50px;
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .content {
-  @apply bg-white;
 }
 
 .sidebar {

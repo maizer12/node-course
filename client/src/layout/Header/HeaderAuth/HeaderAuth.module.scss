@@ -28,3 +28,16 @@
     text-decoration: none;
   }
 }
+
+@media (max-width: 480px) {
+  .user-info {
+    display: none;
+  }
+  .btn {
+    display: none !important;
+  }
+  .icon {
+    @apply w-[43px] h-[43px] rounded-[50%] p-1;
+    border-color: rgb(80 80 80);
+  }
+}

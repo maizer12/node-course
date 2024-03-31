@@ -1,13 +1,15 @@
 .root {
   background-color: #fff;
   padding: 10px 0;
-  border-bottom: 1px solid #e0e0e0;
   margin-bottom: 30px;
+  box-shadow: 0 0 2px 1px rgb(214, 214, 214);
 }
 
 .inner {
-  display: flex;
+  @apply flex;
   justify-content: space-between;
+  @media (max-width: 480px) {
+  }
 }
 
 .logo {
@@ -23,4 +25,7 @@
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
+  @media (max-width: 480px) {
+    font-size: 27px;
+  }
 }

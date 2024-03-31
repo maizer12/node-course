@@ -39,7 +39,6 @@ const CreatePostModal: FC = () => {
   const createPost = async () => {
     try {
       const res = await axios.post('/posts', {
-        title,
         tags: selected,
         text,
         imageUrl: imgLink,

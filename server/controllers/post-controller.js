@@ -1,13 +1,12 @@
 import PostModel from '../models/Post.js';
+import postService from '../services/post-service.js';
 
 class PostController {
   async createPost(req, res) {
     try {
-      const doc = new PostModel({ ...req.body, user: req.id });
-      const post = await doc.save();
+      const post = await postService.create({ ...req.body, user: req.id });
       res.json(post);
     } catch (err) {
-      console.log(err);
       res.status(404).json({
         message: 'Failed to create post',
       });
@@ -43,13 +42,9 @@ class PostController {
   }
 
   async getAll(req, res) {
-    const { sort, tag } = req.query;
-    const getSort = sort === 'popular' ? { viewsCount: -1 } : { createdAt: -1 };
     try {
-      const posts = await PostModel.find(!!tag ? { tags: tag } : {})
-        .sort(getSort)
-        .populate('user')
-        .exec();
+      const { sort, tag } = req.query;
+      const posts = await postService.getPosts({ sort, tag });
       res.json(posts);
     } catch (err) {
       res.status(404).json({
