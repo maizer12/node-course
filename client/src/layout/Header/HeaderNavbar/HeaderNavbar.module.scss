@@ -1,0 +1,9 @@
+.navbar {
+  @apply flex gap-6;
+
+  a {
+    @apply duration-700 border-transparent border px-3 rounded-3xl flex gap-2 items-center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+}

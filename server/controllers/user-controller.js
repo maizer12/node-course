@@ -1,5 +1,3 @@
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import UserModel from '../models/User.js';
 import userService from '../services/user-service.js';
 
@@ -27,9 +25,7 @@ class UserController {
   async getMe(req, res) {
     try {
       const user = await UserModel.findById(req.id);
-
       if (!user) return res.status(404).json({ message: 'User not found!' });
-
       const { passwordHash, ...data } = user._doc;
 
       res.json({ data });
@@ -37,6 +33,15 @@ class UserController {
       res.status(403).json({
         message: 'No access',
       });
+    }
+  }
+
+  async getAll(req, res) {
+    try {
+      const users = await userService.getAll();
+      res.json(users);
+    } catch (err) {
+      console.log(err);
     }
   }
 }

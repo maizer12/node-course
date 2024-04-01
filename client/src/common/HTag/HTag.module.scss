@@ -1,7 +1,10 @@
 .title {
   @apply text-black;
 }
-
+.h1 {
+  @apply text-3xl;
+  font-weight: bold;
+}
 .h4 {
   @apply text-lg;
 }

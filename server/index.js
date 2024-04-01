@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import { checkAuth } from './utils/checkAuth.js';
 import PostRoutes from './routes/PostRoutes.js';
 import AuthRoutes from './routes/AuthRoutes.js';
+import userRoutes from './routes/user-routes.js';
 import multer from 'multer';
 import cors from 'cors';
 
@@ -44,6 +45,7 @@ app.post('/upload', checkAuth, upload.single('image'), (req, res) => {
 
 app.use(AuthRoutes);
 app.use(PostRoutes);
+app.use(userRoutes);
 
 app.listen(process.env.PORT, (rej) => {
   if (rej) return console.log(rej);

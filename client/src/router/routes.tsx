@@ -3,6 +3,7 @@ const Home = lazy(() => import('../pages/Home'));
 const Registration = lazy(() => import('../pages/Registration'));
 const Login = lazy(() => import('../pages/Login'));
 const Post = lazy(() => import('../pages/FullPost'));
+const People = lazy(() => import('../pages/People'));
 
 const routes = [
   {
@@ -20,6 +21,11 @@ const routes = [
   {
     path: '/post/:id',
     element: <Post />,
+  },
+  //People Page
+  {
+    path: '/people',
+    element: <People />,
   },
 ];
 

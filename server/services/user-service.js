@@ -40,6 +40,11 @@ class UserService {
       token,
     };
   }
+
+  async getAll() {
+    const users = await UserModel.find({}, { passwordHash: 0, updatedAt: 0 });
+    return users;
+  }
 }
 
 export default new UserService();

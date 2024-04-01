@@ -1,3 +1,7 @@
+a.active {
+  @apply border-gray-300;
+}
+
 #root {
   min-height: 100vh;
   background-color: #fafafa;

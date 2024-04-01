@@ -6,8 +6,7 @@
 }
 
 .inner {
-  @apply flex;
-  justify-content: space-between;
+  @apply flex justify-between items-center;
   @media (max-width: 480px) {
   }
 }

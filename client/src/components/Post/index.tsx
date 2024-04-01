@@ -55,7 +55,7 @@ export const Post: FC<any> = ({
         </div>
       )}
       {imageUrl && (
-        <Link to={`/post/${id}`} className={clsx(styles.image, 'mb-8', { [styles.imageFull]: isFullPost })}>
+        <Link to={`/post/${id}`} className={clsx(styles.image, 'mb-2', { [styles.imageFull]: isFullPost })}>
           <img src={baseURL + imageUrl} alt={title} />
         </Link>
       )}
