@@ -1,13 +1,6 @@
 .user-card {
   @apply flex flex-col p-4 border border-gray-300 max-w-[320px] w-full rounded-lg bg-white;
 
-  .image {
-    width: 55px;
-    height: 55px;
-    background-color: rgb(255, 153, 0);
-    @apply rounded-[50%] mb-4;
-  }
-
   h4 {
     font-weight: 600;
   }

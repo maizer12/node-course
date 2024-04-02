@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import styles from './People.module.scss';
-import { HTag } from '../../common';
+import { AvatarGenerator, HTag } from '../../common';
 import { Search } from '../../components';
 import axios from '../../axios.ts';
 
@@ -26,7 +26,7 @@ const People: FC = () => {
         {!!data &&
           data.map((e: any) => (
             <li className={styles['user-card']} key={e._id}>
-              <div className={styles.image}>{/* <img src="" alt="" className="" /> */}</div>
+              <AvatarGenerator text={e.fullName} className="mb-4" />
               <h4>{e.fullName}</h4>
               <p>{e.email}</p>
             </li>

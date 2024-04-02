@@ -5,7 +5,7 @@ import { selectIsAuth, logout } from '../../../store/slices/authSlice';
 import { useAppSelector } from '../../../hooks/redux';
 import { User } from 'lucide-react';
 import cn from 'classnames';
-import { Button } from '../../../common';
+import { AvatarGenerator, Button } from '../../../common';
 import { Link } from 'react-router-dom';
 import HeaderAuthSkeleton from './HeaderAuthSkeleton';
 
@@ -20,7 +20,7 @@ const HeaderAuth: FC = () => {
 
   if (loading) {
     return (
-      <div className="ml-auto">
+      <div>
         <HeaderAuthSkeleton />
       </div>
     );
@@ -32,7 +32,7 @@ const HeaderAuth: FC = () => {
         <>
           <>
             <div className="flex items-center gap-2">
-              <User width={37} height={37} strokeWidth={1} className={styles.icon} />
+              <AvatarGenerator text={data.data.fullName} className="w-[45px] h-[45px] mr-2" />
               <div className={styles['user-info']}>
                 <h4 className={styles.title}>{data.data.fullName}</h4>
                 <p className={styles.email}>{data.data.email}</p>

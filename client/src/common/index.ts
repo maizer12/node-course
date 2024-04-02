@@ -4,3 +4,4 @@ export * from './Modal';
 export * from './Input';
 export * from './HTag';
 export * from './Textarea';
+export * from './AvatarGenerator';

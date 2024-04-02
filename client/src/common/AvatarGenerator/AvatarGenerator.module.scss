@@ -1,0 +1,8 @@
+.image {
+  width: 55px;
+  height: 55px;
+  @apply rounded-[50%] flex justify-center items-center text-white uppercase;
+  font-size: 38px;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+}
