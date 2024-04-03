@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { fetchAllPosts, fetchAllTags } from '../../store/slices/postsSlice/featchPosts.ts';
 import { Post } from '../../components/Post';
 import { TagsBlock } from '../../components/TagsBlock';
-import { CommentsBlock } from '../../components/CommentsBlock';
 import { useSelector } from 'react-redux';
 import styles from './Home.module.scss';
 import { useLocation } from 'react-router-dom';
@@ -62,25 +61,6 @@ const Home = () => {
         ) : (
           <TagsBlock items={tags.data} isLoading={false} active={settingParams.tag} />
         )}
-        <CommentsBlock
-          items={[
-            {
-              user: {
-                fullName: 'Вася Пупкин',
-                avatarUrl: 'https://mui.com/static/images/avatar/1.jpg',
-              },
-              text: 'Это тестовый комментарий',
-            },
-            {
-              user: {
-                fullName: 'Иван Иванов',
-                avatarUrl: 'https://mui.com/static/images/avatar/2.jpg',
-              },
-              text: 'When displaying three lines or more, the avatar is not aligned at the top. You should set the prop to align the avatar at the top',
-            },
-          ]}
-          isLoading={false}
-        />
       </div>
       {isModalCreate && <CreatePostModal />}
     </main>

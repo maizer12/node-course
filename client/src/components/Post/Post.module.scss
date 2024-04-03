@@ -6,7 +6,6 @@ $blue: #4361ee;
 }
 
 .image {
-  @apply border-t-transparent border-t-2 duration-700;
   overflow: hidden;
   height: 420px;
   display: block;
@@ -15,9 +14,6 @@ $blue: #4361ee;
     height: 100%;
     object-fit: cover;
     object-position: center;
-  }
-  &:hover {
-    @apply border-primary;
   }
   &Full {
     min-height: 300px;

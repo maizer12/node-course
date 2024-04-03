@@ -1,5 +1,6 @@
 import PostModel from '../models/Post.js';
 import postService from '../services/post-service.js';
+import TagsService from '../services/tags-service.js';
 
 class PostController {
   async createPost(req, res) {
@@ -55,14 +56,8 @@ class PostController {
 
   async getLastTags(req, res) {
     try {
-      const doc = await PostModel.aggregate([
-        { $unwind: '$tags' },
-        { $group: { _id: '$tags', count: { $sum: 1 } } },
-        { $sort: { count: -1 } },
-        { $project: { _id: 0, title: '$_id', count: 1 } },
-      ]);
-
-      res.json(doc.slice(0, 5));
+      const tags = await TagsService.getTags();
+      res.json(tags);
     } catch (err) {
       console.log(err);
       res.status(404).json({

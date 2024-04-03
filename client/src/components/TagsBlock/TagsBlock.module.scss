@@ -10,3 +10,10 @@
     @apply border-primary bg-gray-100;
   }
 }
+.title {
+  font-weight: 600;
+}
+.block {
+  @apply rounded-md pb-14 bg-white;
+  overflow: hidden;
+}

@@ -1,11 +1,11 @@
 .label {
-  @apply relative  flex w-fit;
+  @apply relative  flex max-w-[360px] w-full;
 
   input {
-    @apply p-2 w-full border rounded-md min-w-[360px] border-gray-300 pl-14;
+    @apply p-2 border rounded-md w-full  border-gray-300 pl-14 placeholder:duration-700 focus:placeholder:opacity-0;
   }
 
   button {
-    @apply text-gray-400 absolute left-4 top-[50%] translate-y-[-50%];
+    @apply text-gray-400 absolute left-4 top-[50%] translate-y-[-50%] hover:text-gray-700 duration-700;
   }
 }

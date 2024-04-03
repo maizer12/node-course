@@ -1,0 +1,26 @@
+.main {
+  display: grid;
+  column-gap: 25px;
+  grid-template-columns: 2.7fr 6fr;
+}
+.sidebar {
+  @apply border border-gray-200 rounded-xl p-4 w-full bg-white;
+
+  .name {
+    @apply text-gray-400 text-sm uppercase my-3;
+  }
+
+  .tags {
+    li {
+      @apply border p-3 rounded-md bg-blue-100 text-gray-700;
+
+      &::before {
+        content: '#';
+        @apply mr-2 text-gray-400;
+      }
+    }
+  }
+}
+.content {
+  @apply bg-white rounded-xl p-4;
+}

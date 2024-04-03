@@ -4,6 +4,7 @@ const Registration = lazy(() => import('../pages/Registration'));
 const Login = lazy(() => import('../pages/Login'));
 const Post = lazy(() => import('../pages/FullPost'));
 const People = lazy(() => import('../pages/People'));
+const Chats = lazy(() => import('../pages/Chat'));
 
 const routes = [
   {
@@ -26,6 +27,11 @@ const routes = [
   {
     path: '/people',
     element: <People />,
+  },
+  //chats
+  {
+    path: '/chats',
+    element: <Chats />,
   },
 ];
 
